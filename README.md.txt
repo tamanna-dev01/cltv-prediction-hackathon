@@ -1,4 +1,5 @@
 # Customer Lifetime Value (CLTV) Prediction
+--------------------------------------------
 
 ##  Project Overview
 
@@ -50,7 +51,7 @@ The main objectives of this project are:
 
 ---
 
-#  Dataset
+## Dataset
 
 The project uses a customer dataset provided as part of the CLTV prediction hackathon.
 
@@ -140,7 +141,7 @@ This provides consistent feature names throughout the workflow.
 2. ID Handling
 
 The customer ID was saved separately for the final prediction file and removed from the model features.
------------------------------------------------
+----------------------------------------------
 test_ids = test["id"]
 train.drop("id", axis=1, inplace=True)
 test.drop("id", axis=1, inplace=True)
@@ -279,11 +280,12 @@ The main machine learning algorithm used in this project is:
 LightGBM is a gradient boosting framework designed for efficient learning on structured and tabular datasets.
 It was selected because it can model nonlinear relationships and interactions between features effectively.
 # Model Configuration
+--------------------------
 LGBMRegressor(
     n_estimators=2000,
     learning_rate=0.03
 )
-
+--------------------------
 # Training Strategy
 
 The model was initially trained using:
@@ -302,8 +304,9 @@ The primary evaluation metric used in this project is:
 
 R², or the coefficient of determination, measures how much of the variation in the target variable is explained by the model.
 The validation score was calculated using:
+----------------------------
 r2_score(y_val, val_preds)
-
+----------------------------
 # Validation Result
 
 Metric         Result
@@ -322,6 +325,7 @@ The score should be interpreted within the context of the target transformation 
 
 The trained LightGBM model generated CLTV predictions for the unseen test dataset.
 The prediction pipeline was:
+-------------------------
 Test Features
       ↓
 Trained LightGBM Model
@@ -331,13 +335,13 @@ Log-Scale Predictions
 Inverse Transformation
       ↓
 Original CLTV Scale
-
+--------------------------
 The predictions were converted back to the original scale using:
-
+---------------------------------
 test_preds = np.expm1(test_preds)
+---------------------------------
 
 ---
-
 
 ## Prediction Output
 
@@ -352,25 +356,24 @@ cltv         Predicted Customer Lifetime Value
 # Example Output
 
 id       cltv
+---------------------
 89393    76562.62
 89394    107484.00
 89395    81115.48
 89396    79036.95
 89397    84711.74
-
-The final output is saved as:
-
-submission.csv
-
+                              ---------------
+The final output is saved as: submission.csv
+                              ---------------
 ---
 
 ## Feature Importance
 
 Feature importance was extracted from the trained LightGBM model:
-
+-----------------------------------------
 importance = model.feature_importances_
 features = X.columns
-
+-----------------------------------------
 A horizontal bar chart was created to visualize the relative importance of the model features.
 Feature importance can help identify which customer characteristics contribute most strongly to the model's predictions.
 The final visualization can be stored in the images/ directory.
@@ -389,17 +392,19 @@ Customers with higher predicted CLTV can potentially be considered high-value cu
 # Business Opportunity
 
 Businesses can prioritize these customers for:
+----------------------------
 Retention campaigns
 Loyalty programs
 Personalized offers
 Premium customer services
+----------------------------
 
 2. Customer Segmentation
 
 Predicted CLTV can be used as an additional variable for customer segmentation.
 
 For example:
-
+---------------------------------------
 High CLTV
     ↓
 High-value customers
@@ -411,7 +416,7 @@ Growth / engagement customers
 Low CLTV
     ↓
 Potential development opportunities
-
+---------------------------------------
 This allows businesses to design different strategies for different customer groups.
 
 3. Marketing Prioritization
@@ -458,7 +463,7 @@ Retrain or update the model as new customer data becomes available.
 ## Potential Business Applications
 
 A CLTV prediction system can potentially support:
-
+--------------------------------------
 Customer segmentation
 Customer retention
 Marketing optimization
@@ -468,28 +473,19 @@ Upselling
 Customer relationship management
 Marketing budget allocation
 High-value customer identification
+--------------------------------------
 
 ---
 
 ## Technologies Used
 
-# Programming Language
+# Programming Language :- Python
 
-Python
+# Data Analysis :- Pandas,NumPy
 
-# Data Analysis
+# Machine Learning :- Scikit-learn,LightGBM
 
-Pandas
-NumPy
-
-# Machine Learning
-
-Scikit-learn
-LightGBM
-
-# Data Visualization
-
-Matplotlib
+# Data Visualization :- Matplotlib
 
 # Development Environment
 
@@ -532,7 +528,9 @@ cltv-prediction-hackathon/
 └── .gitignore
 
 # Folder Description
+
 Folder/File             Purpose
+---------------------------------------------------------------
 README.md          Project documentation
 data/              Dataset information or permitted data files
 notebooks/         Jupyter Notebook containing the analysis
@@ -550,34 +548,41 @@ The original dataset may be excluded when redistribution is not permitted.
 ## How to Run the Project
 
 1. Clone the Repository
-
+---------------------------------------------------------------------------
 git clone https://github.com/tamanna-dev01/cltv-prediction-hackathon.git
+---------------------------------------------------------------------------
 
 2. Navigate to the Project Directory
-
+--------------------------------
 cd cltv-prediction-hackathon
+--------------------------------
 
 3. Create a Virtual Environment
-
+---------------------
 python -m venv venv
+---------------------
 
 4. Activate the Environment
-
+----------------------------
 Windows
 venv\Scripts\activate
-
+----------------------------
+----------------------------
 macOS/Linux
 source venv/bin/activate
+----------------------------
 
 5. Install Dependencies
-
+---------------------------------
 pip install -r requirements.txt
+---------------------------------
 
 6. Open the Notebook
 
 Open:
+--------------------------------
 notebooks/cltv_prediction.ipynb
-
+--------------------------------
 You can use:
 VS Code
 Jupyter Notebook
@@ -780,9 +785,10 @@ The project demonstrates how machine learning can be applied to transform custom
 ---
 
 ## Project Links
-
+--------------------------------------------------------------------------------------
 GitHub Repository :- https://github.com/tamanna-dev01/cltv-prediction-hackathon⁠�
 GitHub Profile :- https://github.com/tamanna-dev01⁠�
+--------------------------------------------------------------------------------------
 
 ---
 
